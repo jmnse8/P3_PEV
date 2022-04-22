@@ -10,7 +10,7 @@ public class FactoriaFuncionImp extends FactoriaFuncion{
 	@Override
 	public Funcion generaFuncion(FuncionEnum funcion, double intervalo) {
 		switch (funcion) {
-		case Funcion_trafico_aereo:
+		case Funcion_GE:
 			return new FuncionGE();
 		default:
 			return new FuncionGE();

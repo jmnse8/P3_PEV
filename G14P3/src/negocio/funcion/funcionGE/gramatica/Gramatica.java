@@ -59,10 +59,13 @@ public class Gramatica {
 			i = 0;
 			this.wraps++;
 		}
-		if (this.wraps >= this.maxWraps)
+		if (this.wraps >= this.maxWraps) {
 			limiteWraps = true;
+			return -1;
+		}
 		
 		int instruc = codones.get(i) % 3;
+		i++;
 
 		switch (instruc) {
 		case 0:
@@ -91,10 +94,13 @@ public class Gramatica {
 			i = 0;
 			this.wraps++;
 		}
-		if (this.wraps >= this.maxWraps)
+		if (this.wraps >= this.maxWraps) {
 			limiteWraps = true;
+			return -1;
+		}
 		
 		int instruc = codones.get(i) % 2;
+		i++;
 
 		switch (instruc) {
 		case 0:
@@ -121,10 +127,13 @@ public class Gramatica {
 			i = 0;
 			this.wraps++;
 		}
-		if (this.wraps >= this.maxWraps)
+		if (this.wraps >= this.maxWraps) {
 			limiteWraps = true;
+			return -1;
+		}
 		
 		int instruc = codones.get(i) % 2;
+		i++;
 
 		switch (instruc) {
 		case 0:
@@ -143,11 +152,14 @@ public class Gramatica {
 			i = 0;
 			this.wraps++;
 		}
-		if (this.wraps >= this.maxWraps)
+		if (this.wraps >= this.maxWraps) {
 			limiteWraps = true;
+			return -1;
+		}
 		
 		if(nCaso == 0) {// caso 0 : AO | A1 | DO | D1 | D2 | D3
-			int instruc = codones.get(i) % 12;
+			int instruc = codones.get(i) % 6;
+			i++;
 
 			switch (instruc) {
 			case 0:
@@ -167,7 +179,8 @@ public class Gramatica {
 			}
 		}
 		else {// caso 1 : AO | A1 | A2 | DO | D1 | D2 | D3 | D4 | D5 | D6 | D7 | D8
-			int instruc = codones.get(i) % 6;
+			int instruc = codones.get(i) % 12;
+			i++;
 
 			switch (instruc) {
 			case 0:
@@ -200,6 +213,10 @@ public class Gramatica {
 		}
 		
 		
+	}
+	
+	public boolean getLlegadoLimiteWraps() {
+		return limiteWraps;
 	}
 
 }
