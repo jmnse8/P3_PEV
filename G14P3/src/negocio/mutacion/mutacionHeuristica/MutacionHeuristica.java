@@ -5,7 +5,7 @@ import java.util.PriorityQueue;
 import java.util.Random;
 
 import negocio.funcion.Funcion;
-import negocio.funcion.funcionTraficoAereo.FuncionTraficoAereo;
+import negocio.funcion.funcionGE.FuncionGE;
 import negocio.mutacion.Mutacion;
 
 public class MutacionHeuristica implements Mutacion {
@@ -38,7 +38,7 @@ public class MutacionHeuristica implements Mutacion {
 					}
 				}
 				
-				Funcion aux = new FuncionTraficoAereo();// para cojer el comparador
+				Funcion aux = new FuncionGE();// para cojer el comparador
 				permutaciones = new PriorityQueue<Funcion>(1, aux.getComp());// cola de prioridad para cojer el de menor fitness
 
 				permutaciones(arrayPosicionesPermutar, gen, arrayPosicionesPermutar.size());// genero las permutaciones
@@ -52,7 +52,7 @@ public class MutacionHeuristica implements Mutacion {
 
 	private void permutaciones(final ArrayList<Integer> arrayPosicionesPermutar, ArrayList<Integer> gen, int k) {
 		if (1 == k) {// cuando k llega a uno para y lo mete a la cola de prioridad
-			FuncionTraficoAereo sol = new FuncionTraficoAereo();
+			FuncionGE sol = new FuncionGE();
 			sol.setIndividuo(new ArrayList<Integer>(gen));
 			sol.calculaFitness();
 			permutaciones.add(sol);

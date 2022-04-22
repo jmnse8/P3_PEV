@@ -3,7 +3,7 @@ package negocio.funcion.factoriaFuncion.factoriaFuncionImp;
 import negocio.funcion.Funcion;
 import negocio.funcion.FuncionEnum;
 import negocio.funcion.factoriaFuncion.FactoriaFuncion;
-import negocio.funcion.funcionTraficoAereo.FuncionTraficoAereo;
+import negocio.funcion.funcionGE.FuncionGE;
 
 public class FactoriaFuncionImp extends FactoriaFuncion{
 
@@ -11,9 +11,9 @@ public class FactoriaFuncionImp extends FactoriaFuncion{
 	public Funcion generaFuncion(FuncionEnum funcion, double intervalo) {
 		switch (funcion) {
 		case Funcion_trafico_aereo:
-			return new FuncionTraficoAereo();
+			return new FuncionGE();
 		default:
-			return new FuncionTraficoAereo();
+			return new FuncionGE();
 		}
 	}
 
