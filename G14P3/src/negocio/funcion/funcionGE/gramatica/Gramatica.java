@@ -26,6 +26,8 @@ public class Gramatica {
 	private int[] casoProbar;
 	private int nCaso;
 	private boolean limiteWraps;
+	private int i;
+	private ArrayList<Integer> codones;
 
 	public Gramatica(int maxWraps, int[] casoProbar, int nCaso) {
 		this.wraps = 0;
@@ -37,24 +39,26 @@ public class Gramatica {
 
 	// S ::= <expr>
 	public int S(ArrayList<Integer> codones) {
-		return decodeExpr(codones, 0);
+		this.codones = codones;
+		i = 0;
+		return decodeExpr();
 	}
 
 	// <expr> ::= (<expr> <op> <expr> ) | <pre-operation> | <var>
 
-	private int expr1(ArrayList<Integer> codones, int i) {//(<expr> <op> <expr> )
-		return decodeOp(codones, i);
+	private int expr1() {//(<expr> <op> <expr> )
+		return decodeOp();
 	}
 
-	private int expr2(ArrayList<Integer> codones, int i) {//<pre-operation>
-		return decodePreOp(codones, i);
+	private int expr2() {//<pre-operation>
+		return decodePreOp();
 	}
 
-	private int expr3(ArrayList<Integer> codones, int i) {// <var>
-		return decodeVar(codones, i);
+	private int expr3() {// <var>
+		return decodeVar();
 	}
 
-	private int decodeExpr(ArrayList<Integer> codones, int i) {
+	private int decodeExpr() {
 		if (i >= codones.size()) {
 			i = 0;
 			this.wraps++;
@@ -69,11 +73,11 @@ public class Gramatica {
 
 		switch (instruc) {
 		case 0:
-			return expr1(codones, i);
+			return expr1();
 		case 1:
-			return expr2(codones, i);
+			return expr2();
 		case 2:
-			return expr3(codones, i);
+			return expr3();
 		default:
 			return Integer.MAX_VALUE;
 		}
@@ -81,15 +85,16 @@ public class Gramatica {
 	
 	//<op> ::= AND | OR
 	
-	private int andOp(ArrayList<Integer> codones, int i) {
-		return (decodeExpr(codones, i) == 1 && decodeExpr(codones, i) == 1)? 1 : 0;
+	private int andOp() {
+		return (decodeExpr() == 1 && decodeExpr() == 1)? 1 : 0;
 	}
 	
-	private int orOp(ArrayList<Integer> codones, int i) {
-		return (decodeExpr(codones, i) == 1 || decodeExpr(codones, i) == 1)? 1 : 0;
+	private int orOp() {
+		int evaluarIzq = decodeExpr(), evaluarDer = decodeExpr();
+		return (evaluarIzq == 1 || evaluarDer == 1)? 1 : 0;
 	}
 	
-	private int decodeOp(ArrayList<Integer> codones, int i) {
+	private int decodeOp() {
 		if (i >= codones.size()) {
 			i = 0;
 			this.wraps++;
@@ -104,9 +109,9 @@ public class Gramatica {
 
 		switch (instruc) {
 		case 0:
-			return andOp(codones, i);
+			return andOp();
 		case 1:
-			return orOp(codones, i);
+			return orOp();
 		default:
 			return Integer.MAX_VALUE;
 		}
@@ -114,15 +119,17 @@ public class Gramatica {
 	
 	//<pre-operation> ::= NOT (<expr>) | IF ((<expr>) (<expr>) (<expr>))
 	
-	private int notPre(ArrayList<Integer> codones, int i) {// NOT (<expr>)
-		return (decodeExpr(codones, i) == 0) ? 1 : 0;
+	private int notPre() {// NOT (<expr>)
+		return (decodeExpr() == 0) ? 1 : 0;
 	}
 	
-	private int ifPre(ArrayList<Integer> codones, int i) {// IF ((<expr>) (<expr>) (<expr>))
-		return (decodeExpr(codones, i) == 1) ? decodeExpr(codones, i) : decodeExpr(codones, i);
+	private int ifPre() {// IF ((<expr>) (<expr>) (<expr>))
+		int evaluar = decodeExpr(), verdadero = decodeExpr(), falso = decodeExpr();
+		//System.out.println(i + " ! " + evaluar + " " + verdadero + " " + falso);
+		return (evaluar != 1) ? verdadero : falso;
 	}
 	
-	private int decodePreOp(ArrayList<Integer> codones, int i) {
+	private int decodePreOp() {
 		if (i >= codones.size()) {
 			i = 0;
 			this.wraps++;
@@ -137,9 +144,9 @@ public class Gramatica {
 
 		switch (instruc) {
 		case 0:
-			return notPre(codones, i);
+			return notPre();
 		case 1:
-			return ifPre(codones, i);
+			return ifPre();
 		default:
 			return Integer.MAX_VALUE;
 		}
@@ -147,7 +154,7 @@ public class Gramatica {
 	
 	//<var> ::= caso 0 : AO | A1 | DO | D1 | D2 | D3 // caso 1 : AO | A1 | A2 | DO | D1 | D2 | D3 | D4 | D5 | D6 | D7 | D8
 	
-	private int decodeVar(ArrayList<Integer> codones, int i) {
+	private int decodeVar() {
 		if (i >= codones.size()) {
 			i = 0;
 			this.wraps++;
