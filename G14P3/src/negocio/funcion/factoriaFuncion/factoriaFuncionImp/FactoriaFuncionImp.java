@@ -9,12 +9,12 @@ import negocio.funcion.funcionPG.FuncionPG;
 public class FactoriaFuncionImp extends FactoriaFuncion{
 
 	@Override
-	public Funcion generaFuncion(FuncionEnum funcion) {
+	public Funcion generaFuncion(FuncionEnum funcion, int casoIni, int maximaProdundidad) {
 		switch (funcion) {
 		case Funcion_GE:
 			return new FuncionGE();
 		case Funcion_PG:
-			return new FuncionPG();
+			return new FuncionPG(casoIni, maximaProdundidad);
 		default:
 			return new FuncionGE();
 		}

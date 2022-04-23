@@ -31,7 +31,7 @@ public class PanelElitismo extends JPanel{
 		setBackground(Colores.CLARO2);
 
 		Border b = BorderFactory.createLineBorder(Colores.OSCURO2, 2);
-		setBorder(BorderFactory.createTitledBorder(b, "ELIGE EL TIPO DE MUTACIÓN ", TitledBorder.LEFT, TitledBorder.TOP,new Font("Arial", Font.BOLD, 15),Colores.OSCURO2));
+		setBorder(BorderFactory.createTitledBorder(b, "ELIGE SI HAY ELITISMO ", TitledBorder.LEFT, TitledBorder.TOP,new Font("Arial", Font.BOLD, 15),Colores.OSCURO2));
 		
 		cB = new JCheckBox();
 		cB.setBounds(120, 20, 20, 20);

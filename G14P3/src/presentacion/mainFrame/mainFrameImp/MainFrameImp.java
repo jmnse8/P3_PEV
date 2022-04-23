@@ -32,26 +32,26 @@ public class MainFrameImp  extends MainFrame{
 	
 	private void iniGUI() {
 		setVisible(true);
-		setTitle("Práctica 2");
+		setTitle("Práctica 3");
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		setMinimumSize(new Dimension(1090,708));
+		setMinimumSize(new Dimension(1090,808));
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setLayout (null);
 		getContentPane().setBackground(Colores.CLARO1);
 		
 		plot = new Plot2DPanel();
-		plot.setBounds(3,3,744,574);
+		plot.setBounds(3,3,744,674);
 		
 		plotPanel = new JPanel();
-		plotPanel.setBounds(320, 85, 750, 580);
+		plotPanel.setBounds(320, 85, 750, 680);
 		plotPanel.setLayout(null);
 		plotPanel.setBackground(Colores.OSCURO2);
 		plotPanel.add(plot);
 		
 		pG = new PanelGeneral();//570
 		
-		titulo = new JLabel("Práctica 2. ALGORITMO GENÉTICO ");
+		titulo = new JLabel("Práctica 3. ALGORITMO GENÉTICO ");
 		titulo.setBounds(10,10,425,60);
 		titulo.setFont(new Font("Arial", Font.BOLD, 24));
 		titulo.setForeground(Colores.OSCURO2);
@@ -89,8 +89,23 @@ public class MainFrameImp  extends MainFrame{
 
 
 	@Override
-	public double getIntervalo() {
-		return pG.getIntervalo();
+	public int getMaxWr() {
+		return pG.getMaxWr();
+	}
+	
+	@Override
+	public int getTamGen() {
+		return pG.getTamGen();
+	}
+	
+	@Override
+	public int getMetIni() {
+		return pG.getMetIni();
+	}
+	
+	@Override
+	public int getMaxPr() {
+		return pG.getMaxPr();
 	}
 
 

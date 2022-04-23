@@ -23,7 +23,6 @@ public abstract class MainFrame extends JFrame{
 	public abstract SeleccionEnum getSeleccion();
 	public abstract MutacionEnum getMutacion();
 	public abstract int getPorcentajeMutacion();
-	public abstract double getIntervalo();
 	public abstract int getTamPoblacion();
 	public abstract int getNumGeneraciones();
 	public abstract FuncionEnum getFuncion();
@@ -33,5 +32,9 @@ public abstract class MainFrame extends JFrame{
 	public abstract int getPorcentajeCruce();
 	public abstract void setGrafica(Plot2DPanel grafica);
 	public abstract int getNFuncion();
+	public abstract int getMaxWr();
+	public abstract int getTamGen();
+	public abstract int getMetIni();
+	public abstract int getMaxPr();
 	
 }

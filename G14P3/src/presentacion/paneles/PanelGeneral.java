@@ -19,7 +19,8 @@ public class PanelGeneral extends JPanel{
 	private PanelSeleccion pS;
 	private PanelCruce pC;
 	private PanelElitismo pE;
-	private PanelIntervalo pI;
+	private PanelGE pGE;
+	private PanelPG pPG;
 	private PanelEjecutar pEj;
 	
 	public PanelGeneral() {
@@ -28,7 +29,7 @@ public class PanelGeneral extends JPanel{
 	
 	public void iniGUI() {
 		setLayout(null);
-		setBounds(5, 85, 310, 580);
+		setBounds(5, 85, 310, 680);
 		setBackground(Colores.CLARO2);
 		Border b = BorderFactory.createLineBorder(Colores.OSCURO2, 2);
 		setBorder(b);
@@ -39,7 +40,8 @@ public class PanelGeneral extends JPanel{
 		pS = new PanelSeleccion();
 		pC = new PanelCruce();
 		pE = new PanelElitismo();
-		pI = new PanelIntervalo();
+		pGE = new PanelGE();
+		pPG = new PanelPG();
 		pEj = new PanelEjecutar();
 		
 		add(pF);
@@ -48,7 +50,8 @@ public class PanelGeneral extends JPanel{
 		add(pG);
 		add(pC);
 		add(pE);
-		add(pI);
+		add(pGE);
+		add(pPG);
 		add(pEj);
 	}
 	
@@ -64,8 +67,20 @@ public class PanelGeneral extends JPanel{
 		return pM.getPorcentajeMutacion();
 	}
 	
-	public double getIntervalo() {
-		return pI.getIntervalo();
+	public int getMaxWr() {
+		return pGE.getMaxWr();
+	}
+	
+	public int getTamGen() {
+		return pGE.getTamGen();
+	}
+	
+	public int getMetIni() {
+		return pPG.getMetIni();
+	}
+	
+	public int getMaxPr() {
+		return pPG.getMaxPr();
 	}
 	
 	public int getTamPoblacion() {

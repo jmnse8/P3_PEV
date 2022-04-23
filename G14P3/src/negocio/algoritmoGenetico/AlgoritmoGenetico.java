@@ -60,7 +60,7 @@ public class AlgoritmoGenetico {
 	public AlgoritmoGenetico() {
 		mF = MainFrame.getInstance();
 
-		intervalo = mF.getIntervalo();
+		//intervalo = mF.getIntervalo();
 		tamPoblacion = mF.getTamPoblacion();
 		numGeneraciones = mF.getNumGeneraciones();
 
@@ -130,10 +130,12 @@ public class AlgoritmoGenetico {
 		}
 	}
 
-	private void iniPoblacion() {
+	private void iniPoblacion() {///INIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+		int maximaProfundidad = mF.getMaxPr();//Falta por hacer
+		int metodoInicializacion = mF.getMetIni();
 		poblacion = new ArrayList<Funcion>();
 		for (int i = 0; i < tamPoblacion; i++) {
-			poblacion.add(FactoriaFuncion.getInstance().generaFuncion(funcionTipo));
+			poblacion.add(FactoriaFuncion.getInstance().generaFuncion(funcionTipo,metodoInicializacion ,maximaProfundidad));
 		}
 		max = poblacion.get(0).getMax();
 		presSelecAct = 0;

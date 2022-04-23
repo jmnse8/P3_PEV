@@ -24,7 +24,7 @@ public class PanelEjecutar extends JPanel{
 
 	private void iniGUI() {
 		setLayout(null);
-		setBounds(8, 515, 294, 60);
+		setBounds(8, 615, 294, 60);
 		setBackground(Colores.CLARO2);
 
 		Border b = BorderFactory.createLineBorder(Colores.OSCURO2, 2);

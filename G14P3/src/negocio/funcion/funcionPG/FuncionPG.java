@@ -30,22 +30,17 @@ public class FuncionPG implements Funcion, Cloneable {
 		}
 	};
 	
-	public FuncionPG() {
-		int casoIni = 0;
-		switch (casoIni) {
+	public FuncionPG(int casoIni, int maximaProdundidad) {
+		this.maximaProdundidad = maximaProdundidad;
+		switch (casoIni) {//Ramped and Half se decide fuera, en AlgoritmoGenetico en inicialización de la población
 		case 0:
 			individuo = inicializaCompleta(0);
 			break;
 		case 1:
 			individuo = inicializaCreciente(0);
 			break;
-		case 2:
-			individuo = inicializaRampedHalf(0);//Este no va a existir
-			break;
 		}
 	}
-
-	
 
 	private Nodo inicializaCompleta(int profundidad) {
 		Nodo nodo = null;
@@ -66,20 +61,6 @@ public class FuncionPG implements Funcion, Cloneable {
 		Nodo nodo = null;
 		if(profundidad < maximaProdundidad) {
 			nodo = getNodoCreciente();
-			for(int i = 0; i < nodo.getNumHijos(); i++) {
-				nodo.addHijo(inicializaCompleta(profundidad + 1));
-			}
-		}
-		else {
-			nodo = new NodoVariable(nCaso);
-		}
-		return nodo;
-	}
-
-	private Nodo inicializaRampedHalf(int profundidad) {
-		Nodo nodo = null;
-		if(profundidad < maximaProdundidad) {
-			nodo = new NodoOperacion();
 			for(int i = 0; i < nodo.getNumHijos(); i++) {
 				nodo.addHijo(inicializaCompleta(profundidad + 1));
 			}
