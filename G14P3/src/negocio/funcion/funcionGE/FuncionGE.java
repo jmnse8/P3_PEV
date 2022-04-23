@@ -196,7 +196,7 @@ public class FuncionGE implements Funcion, Cloneable {
 	@Override
 	public String toString() {
 		GramaticaTexto gT = new GramaticaTexto(maxWraps, nCaso);
-		return "FuncionGE [individuo=" + individuo + ", fitness=" + fitness + gT.S(individuo) + "]";
+		return "FuncionGE [individuo=" + individuo + ",\n\t fitness=" + fitness + ",\n\t función" + gT.S(individuo) + "]";
 	}
 	
 	public static void main(String[] args) {

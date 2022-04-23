@@ -14,5 +14,5 @@ public abstract class FactoriaFuncion {
 		return instance;
 	}
 
-	public abstract Funcion generaFuncion(FuncionEnum funcion, double intervalo);
+	public abstract Funcion generaFuncion(FuncionEnum funcion);
 }

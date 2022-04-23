@@ -133,7 +133,7 @@ public class AlgoritmoGenetico {
 	private void iniPoblacion() {
 		poblacion = new ArrayList<Funcion>();
 		for (int i = 0; i < tamPoblacion; i++) {
-			poblacion.add(FactoriaFuncion.getInstance().generaFuncion(funcionTipo, intervalo));
+			poblacion.add(FactoriaFuncion.getInstance().generaFuncion(funcionTipo));
 		}
 		max = poblacion.get(0).getMax();
 		presSelecAct = 0;

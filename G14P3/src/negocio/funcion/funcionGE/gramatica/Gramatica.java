@@ -126,7 +126,7 @@ public class Gramatica {
 	private int ifPre() {// IF ((<expr>) (<expr>) (<expr>))
 		int evaluar = decodeExpr(), verdadero = decodeExpr(), falso = decodeExpr();
 		//System.out.println(i + " ! " + evaluar + " " + verdadero + " " + falso);
-		return (evaluar != 1) ? verdadero : falso;
+		return (evaluar == 1) ? verdadero : falso;
 	}
 	
 	private int decodePreOp() {

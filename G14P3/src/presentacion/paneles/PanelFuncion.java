@@ -35,6 +35,7 @@ public class PanelFuncion extends JPanel {
 
 		cB = new JComboBox<String>();
 		cB.addItem("Gramática evolutiva");
+		cB.addItem("Programación genética");
 		cB.setBounds(20, 20, 210, 20);
 		cB.setBackground(Colores.CLARO1);
 		cB.setForeground(Colores.OSCURO2);
@@ -53,6 +54,8 @@ public class PanelFuncion extends JPanel {
 		switch ((String) cB.getSelectedItem()) {
 		case "Gramática evolutiva":
 			return FuncionEnum.Funcion_GE;
+		case "Programación genética":
+			return FuncionEnum.Funcion_PG;
 		default:
 			return FuncionEnum.Funcion_GE;
 		}
