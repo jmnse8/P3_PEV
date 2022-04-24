@@ -86,7 +86,8 @@ public class Gramatica {
 	//<op> ::= AND | OR
 	
 	private int andOp() {
-		return (decodeExpr() == 1 && decodeExpr() == 1)? 1 : 0;
+		int evaluarIzq = decodeExpr(), evaluarDer = decodeExpr();
+		return (evaluarIzq == 1 && evaluarDer == 1)? 1 : 0;
 	}
 	
 	private int orOp() {
@@ -125,7 +126,6 @@ public class Gramatica {
 	
 	private int ifPre() {// IF ((<expr>) (<expr>) (<expr>))
 		int evaluar = decodeExpr(), verdadero = decodeExpr(), falso = decodeExpr();
-		//System.out.println(i + " ! " + evaluar + " " + verdadero + " " + falso);
 		return (evaluar == 1) ? verdadero : falso;
 	}
 	

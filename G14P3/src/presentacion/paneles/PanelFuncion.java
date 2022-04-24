@@ -40,7 +40,7 @@ public class PanelFuncion extends JPanel {
 		cB.setBackground(Colores.CLARO1);
 		cB.setForeground(Colores.OSCURO2);
 		
-		SpinnerNumberModel modeloSpinner = new SpinnerNumberModel(1, 1, 3, 1);
+		SpinnerNumberModel modeloSpinner = new SpinnerNumberModel(0, 0, 1, 1);
 		
         nS = new JSpinner(modeloSpinner);
         nS.setBounds(240, 20, 40, 20);

@@ -32,42 +32,46 @@ public class FuncionGE implements Funcion, Cloneable {
 	};
 	
 	public FuncionGE() {
+		MainFrame mF = MainFrame.getInstance();
 		individuo = new ArrayList<Integer>();// inicializo individuo
-		
+		nCaso = mF.getNFuncion();
 		Random rd = new Random();
-		tamGen = 20;
-		int cont = 0;
+		tamGen = mF.getTamGen();
+		int cont = 0;/*
 		individuo.add(1);
 		individuo.add(3);
-		individuo.add(8);
-		individuo.add(7);
-		individuo.add(4);
-		individuo.add(11);
-		individuo.add(5);
 		individuo.add(0);
-		individuo.add(11);
-		individuo.add(53);
-		individuo.add(14);
-		individuo.add(52);
-		individuo.add(19);
-		individuo.add(17);
+		individuo.add(2);
 		individuo.add(20);
 		individuo.add(54);
+		individuo.add(8);
+		individuo.add(7);
+		individuo.add(11);
+		individuo.add(53);
+		individuo.add(19);
+		individuo.add(17);
+		individuo.add(65);
+		individuo.add(67);
 		individuo.add(23);
 		individuo.add(51);
+		individuo.add(4);
+		individuo.add(87);
+		individuo.add(5);
+		individuo.add(60);
+		individuo.add(14);
+		individuo.add(52);
 		individuo.add(26);
-		individuo.add(50);
+		individuo.add(32);*/
 		
-		/*
+		
 		while (cont < tamGen) {// meto los nº del individuo mediante aleatorios
-			int numero = rd.nextInt(255);
+			int numero = rd.nextInt(100);
 			if (!individuo.contains(numero + 1)) {
 				individuo.add(numero + 1);
 				cont++;
 			}
-		}*/
-		nCaso = 0;
-		maxWraps = 10;
+		}
+		maxWraps = mF.getMaxWr();
 	}
 
 	@Override
@@ -84,10 +88,8 @@ public class FuncionGE implements Funcion, Cloneable {
 		else 
 			caso = new int[12];
 		/*
-		//0 1 0 0 1 0
-		caso[0] = 0;caso[1] = 1;caso[2] = 0;caso[3] = 0;caso[4] = 1;caso[5] = 0;
-		GramaticaTexto gT = new GramaticaTexto(maxWraps, nCaso); 
-		System.out.println(gT.S(individuo));
+		//0 1 0 0 1 0 | 0 1
+		caso[0] = 0;caso[1] = 1;caso[2] = 0;caso[3] = 0;caso[4] = 0;caso[5] = 1;
 		
 		int solucionEsperada = getSolEsp(caso);
 		
@@ -112,13 +114,13 @@ public class FuncionGE implements Funcion, Cloneable {
 			Gramatica g = new Gramatica(maxWraps, caso, nCaso);
 			int solucionObtenida = g.S(individuo);
 			if(solucionEsperada == solucionObtenida && !g.getLlegadoLimiteWraps())
-				fitness++;
+				fitness++;/*
 			String aux = "";
 			for(int j = 0; j < caso.length; j++)
 				aux += " " + caso[j];
 			if(solucionEsperada != solucionObtenida)
 				System.out.println(aux + " | " + solucionEsperada + " " + solucionObtenida);
-			
+			*/
 	        return;
 	    }
 		caso[k] = 0;
@@ -196,21 +198,23 @@ public class FuncionGE implements Funcion, Cloneable {
 	@Override
 	public String toString() {
 		GramaticaTexto gT = new GramaticaTexto(maxWraps, nCaso);
-		return "FuncionGE [individuo=" + individuo + ",\n\t fitness=" + fitness + ",\n\t función" + gT.S(individuo) + "]";
+		return "FuncionGE [individuo= " + individuo + ",\n\t fitness= " + fitness + ",\n\t función= " + gT.S(individuo) + "]";
 	}
-	
+	/*
 	public static void main(String[] args) {
 		//for(int i = 0; i < 1; i++) {
 		Funcion f = new FuncionGE();
 		
-		System.out.println(f.getIndividuo().toString());
 		
 		f.calculaFitness();
 		
-		System.err.println(f.getFitness() + "\n");
+		System.out.println(f.toString());
+		
+		
+		//System.err.println(f.getFitness() + "\n");
 		
 		//}
 	
-	}
+	}*/
 
 }

@@ -61,7 +61,9 @@ public class FuncionPG implements Funcion, Cloneable {
 	private Nodo inicializaCreciente(int profundidad) {
 		Nodo nodo = null;
 		if(profundidad < maximaProdundidad) {
-			nodo = getNodoCreciente();
+			//nodo = getNodoCreciente();
+			Random rd = new Random();
+			nodo = (rd.nextBoolean()) ? new NodoOperacion() : new NodoVariable(nCaso);
 			for(int i = 0; i < nodo.getNumHijos(); i++) {
 				nodo.addHijo(inicializaCompleta(profundidad + 1));
 			}
@@ -159,12 +161,12 @@ public class FuncionPG implements Funcion, Cloneable {
 		return super.clone();
 	}
 
-
+/*
 	private Nodo getNodoCreciente() {
 		Random rd = new Random();
 		if(nCaso == 0) {// caso 0 : AO | A1 | DO | D1 | D2 | D3
 			int alea = rd.nextInt(10);
-
+			//System.out.println(alea);
 			switch (alea) {
 				case 0:
 					return new NodoOperacion(NodoEnum.AND);
@@ -179,9 +181,9 @@ public class FuncionPG implements Funcion, Cloneable {
 				case 5:
 					return new NodoVariable(NodoEnum.A1);
 				case 6:
-					return new NodoOperacion(NodoEnum.D0);
+					return new NodoVariable(NodoEnum.D0);
 				case 7:
-					return new NodoOperacion(NodoEnum.D1);
+					return new NodoVariable(NodoEnum.D1);
 				case 8:
 					return new NodoVariable(NodoEnum.D2);
 				case 9:
@@ -229,22 +231,21 @@ public class FuncionPG implements Funcion, Cloneable {
 			}
 		}
 	}
-
+*/
 	@Override
 	public String toString() {
-		return "FuncionPG [individuo=" + individuo.aString() + ", fitness=" + fitness + "]";
+		return individuo.aString() + "\n\tfitness = " + fitness;
 	}
 	
 	public static void main(String[] args) {
-		//for(int i = 0; i < 1; i++) {
+		for(int i = 0; i < 10; i++) {
 		Funcion f = new FuncionPG(1,4);
 		
 		
 		f.calculaFitness();
 		System.out.println(f.toString());
-		System.err.println(f.getFitness() + "\n");
 		
-		//}
+		}
 	
 	}
 }

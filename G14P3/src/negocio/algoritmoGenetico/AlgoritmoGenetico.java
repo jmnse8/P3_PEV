@@ -152,7 +152,7 @@ public class AlgoritmoGenetico {
 
 	private void dibujaGrafica() {
 		Plot2DPanel plot = new Plot2DPanel();
-		plot.setBounds(3, 3, 744, 574);
+		plot.setBounds(3,3,744,674);
 		double[] x = new double[numGeneraciones];
 		for (int i = 1; i <= numGeneraciones; i++) {
 			x[i - 1] = i;
