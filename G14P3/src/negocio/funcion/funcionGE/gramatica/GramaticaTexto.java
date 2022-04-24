@@ -163,8 +163,8 @@ public class GramaticaTexto {
 			default:
 				return "";
 			}
-		} else {// caso 1 : AO | A1 | A2 | DO | D1 | D2 | D3 | D4 | D5 | D6 | D7 | D8
-			int instruc = codones.get(i) % 12;
+		} else {// caso 1 : AO | A1 | A2 | DO | D1 | D2 | D3 | D4 | D5 | D6 | D7
+			int instruc = codones.get(i) % 11;
 			i++;
 
 			switch (instruc) {
@@ -190,8 +190,6 @@ public class GramaticaTexto {
 				return "D6";
 			case 10:
 				return "D7";
-			case 11:
-				return "D8";
 			default:
 				return "";
 			}

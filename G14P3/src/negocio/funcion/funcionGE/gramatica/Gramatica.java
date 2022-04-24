@@ -185,8 +185,8 @@ public class Gramatica {
 				return Integer.MAX_VALUE;
 			}
 		}
-		else {// caso 1 : AO | A1 | A2 | DO | D1 | D2 | D3 | D4 | D5 | D6 | D7 | D8
-			int instruc = codones.get(i) % 12;
+		else {// caso 1 : AO | A1 | A2 | DO | D1 | D2 | D3 | D4 | D5 | D6 | D7
+			int instruc = codones.get(i) % 11;
 			i++;
 
 			switch (instruc) {
@@ -212,8 +212,6 @@ public class Gramatica {
 				return casoProbar[9];
 			case 10:
 				return casoProbar[10];
-			case 11:
-				return casoProbar[11];
 			default:
 				return Integer.MAX_VALUE;
 			}

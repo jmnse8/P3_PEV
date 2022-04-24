@@ -86,7 +86,7 @@ public class FuncionPG implements Funcion, Cloneable {
 		if(nCaso == 0) 
 			caso = new int[6];
 		else 
-			caso = new int[12];
+			caso = new int[11];
 		calculaCaso(caso, 0);
 	}
 	

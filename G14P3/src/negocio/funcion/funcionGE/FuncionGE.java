@@ -86,7 +86,7 @@ public class FuncionGE implements Funcion, Cloneable {
 		if(nCaso == 0) 
 			caso = new int[6];
 		else 
-			caso = new int[12];
+			caso = new int[11];
 		/*
 		//0 1 0 0 1 0 | 0 1
 		caso[0] = 0;caso[1] = 1;caso[2] = 0;caso[3] = 0;caso[4] = 0;caso[5] = 1;
