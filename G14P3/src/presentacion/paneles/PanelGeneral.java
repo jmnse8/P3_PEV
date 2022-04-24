@@ -114,4 +114,8 @@ public class PanelGeneral extends JPanel{
 	public int getNFuncion() {
 		return pF.getNFuncion();
 	}
+
+	public int getCasoGramatica() {
+		return pGE.getCasoGramatica();
+	}
 }

@@ -21,6 +21,8 @@ public class PanelGE extends JPanel{
 	private JSpinner tS;
 	private JLabel infoWr;
 	private JSpinner wrS;
+	private JLabel infoCasoG;
+	private JSpinner cgS;
 	
 	public PanelGE() {
 		iniGUI();
@@ -37,12 +39,12 @@ public class PanelGE extends JPanel{
 		//inte.setBounds(20, 20, 260, 20);
 		
 		infoTam = new JLabel("Tamaño de gen:");
-		infoTam.setBounds(20, 20, 180, 20);
+		infoTam.setBounds(20, 20, 90, 20);
 		infoTam.setForeground(Colores.OSCURO2);
 		
 		SpinnerNumberModel modeloSpinner1 = new SpinnerNumberModel(20, 5, 100, 1);
 		tS = new JSpinner(modeloSpinner1);
-		tS.setBounds(200, 20, 70, 20);
+		tS.setBounds(115, 20, 50, 20);
 		tS.setToolTipText("Seleccionar tamaño del gen");
 		
 		infoWr = new JLabel("Número máximo de wraps:");
@@ -54,10 +56,21 @@ public class PanelGE extends JPanel{
 		wrS.setBounds(200, 45, 70, 20);
 		wrS.setToolTipText("Seleccionar número máximo de wraps");
 		
+		infoCasoG = new JLabel("Nº Caso:");
+		infoCasoG.setBounds(180, 20, 50, 20);
+		infoCasoG.setForeground(Colores.OSCURO2);
+		
+		SpinnerNumberModel modeloSpinner3 = new SpinnerNumberModel(0, 0, 1, 1);
+		cgS = new JSpinner(modeloSpinner3);
+		cgS.setBounds(230, 20, 40, 20);
+		cgS.setToolTipText("Seleccionar caso de gramática");
+		
 		add(infoTam);
 		add(tS);
 		add(infoWr);
 		add(wrS);
+		add(infoCasoG);
+		add(cgS);
 	}
 	
 	public int getMaxWr() {
@@ -66,5 +79,9 @@ public class PanelGE extends JPanel{
 	
 	public int getTamGen() {
 		return (int) tS.getValue();
+	}
+
+	public int getCasoGramatica() {
+		return (int) cgS.getValue();
 	}
 }

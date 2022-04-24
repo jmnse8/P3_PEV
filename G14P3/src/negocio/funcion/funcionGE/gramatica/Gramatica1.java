@@ -20,7 +20,7 @@ S ::= <expr>
 <var> ::= caso 0 : AO | A1 | DO | D1 | D2 | D3 // caso 1 : AO | A1 | A2 | DO | D1 | D2 | D3 | D4 | D5 | D6 | D7 | D8
  */
 
-public class Gramatica {
+public class Gramatica1 {
 	private int wraps;
 	private int maxWraps;
 	private int[] casoProbar;
@@ -29,7 +29,7 @@ public class Gramatica {
 	private int i;
 	private ArrayList<Integer> codones;
 
-	public Gramatica(int maxWraps, int[] casoProbar, int nCaso) {
+	public Gramatica1(int maxWraps, int[] casoProbar, int nCaso) {
 		this.wraps = 0;
 		this.maxWraps = maxWraps;
 		this.casoProbar = casoProbar;

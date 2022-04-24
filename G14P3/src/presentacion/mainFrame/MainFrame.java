@@ -36,5 +36,6 @@ public abstract class MainFrame extends JFrame{
 	public abstract int getTamGen();
 	public abstract int getMetIni();
 	public abstract int getMaxPr();
+	public abstract int getCasoGramatica();
 	
 }

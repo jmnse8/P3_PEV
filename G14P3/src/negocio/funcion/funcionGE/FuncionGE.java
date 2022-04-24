@@ -5,8 +5,10 @@ import java.util.Comparator;
 import java.util.Random;
 
 import negocio.funcion.Funcion;
-import negocio.funcion.funcionGE.gramatica.Gramatica;
-import negocio.funcion.funcionGE.gramatica.GramaticaTexto;
+import negocio.funcion.funcionGE.gramatica.Gramatica0;
+import negocio.funcion.funcionGE.gramatica.Gramatica0Texto;
+import negocio.funcion.funcionGE.gramatica.Gramatica1;
+import negocio.funcion.funcionGE.gramatica.Gramatica1Texto;
 import presentacion.mainFrame.MainFrame;
 
 public class FuncionGE implements Funcion, Cloneable {
@@ -16,6 +18,7 @@ public class FuncionGE implements Funcion, Cloneable {
 	private int tamGen;
 	private int nCaso;
 	private int maxWraps;
+	private int casoGramatica;
 	
 	final static Comparator<Funcion> comp = new Comparator<Funcion>() {// comparador de esta función mediante el fitness
 		@Override
@@ -35,6 +38,7 @@ public class FuncionGE implements Funcion, Cloneable {
 		MainFrame mF = MainFrame.getInstance();
 		individuo = new ArrayList<Integer>();// inicializo individuo
 		nCaso = mF.getNFuncion();
+		casoGramatica = mF.getCasoGramatica();
 		Random rd = new Random();
 		tamGen = mF.getTamGen();
 		int cont = 0;/*
@@ -111,9 +115,18 @@ public class FuncionGE implements Funcion, Cloneable {
 		
 		if (k == caso.length) {
 			int solucionEsperada = getSolEsp(caso);
-			Gramatica g = new Gramatica(maxWraps, caso, nCaso);
-			int solucionObtenida = g.S(individuo);
-			if(solucionEsperada == solucionObtenida && !g.getLlegadoLimiteWraps())
+			int solucionObtenida;
+			boolean llegadoLimiteWraps;
+			if (casoGramatica == 0) {
+				Gramatica0 g = new Gramatica0(maxWraps, caso, nCaso);
+				solucionObtenida = g.S(individuo);
+				llegadoLimiteWraps = g.getLlegadoLimiteWraps();
+			} else {
+				Gramatica1 g = new Gramatica1(maxWraps, caso, nCaso);
+				solucionObtenida = g.S(individuo);
+				llegadoLimiteWraps = g.getLlegadoLimiteWraps();
+			}
+			if(solucionEsperada == solucionObtenida && !llegadoLimiteWraps)
 				fitness++;/*
 			String aux = "";
 			for(int j = 0; j < caso.length; j++)
@@ -197,8 +210,16 @@ public class FuncionGE implements Funcion, Cloneable {
 
 	@Override
 	public String toString() {
-		GramaticaTexto gT = new GramaticaTexto(maxWraps, nCaso);
-		return "FuncionGE [individuo= " + individuo + ",\n\t fitness= " + fitness + ",\n\t función= " + gT.S(individuo) + "]";
+		String sol = "";
+		if (casoGramatica == 0) {
+			Gramatica0Texto gT = new Gramatica0Texto(maxWraps, nCaso);
+			sol = gT.S(individuo);
+		} else {
+			Gramatica1Texto gT = new Gramatica1Texto(maxWraps, nCaso);
+			sol = gT.S(individuo);
+		}
+
+		return "FuncionGE [individuo= " + individuo + ",\n\t fitness= " + fitness + ",\n\t función= " + sol + "]";
 	}
 	/*
 	public static void main(String[] args) {

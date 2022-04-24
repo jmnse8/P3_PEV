@@ -166,4 +166,10 @@ public class MainFrameImp  extends MainFrame{
 		return pG.getNFuncion();
 	}
 
+
+	@Override
+	public int getCasoGramatica() {
+		return pG.getCasoGramatica();
+	}
+
 }

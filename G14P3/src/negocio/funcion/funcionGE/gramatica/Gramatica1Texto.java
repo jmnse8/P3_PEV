@@ -2,7 +2,7 @@ package negocio.funcion.funcionGE.gramatica;
 
 import java.util.ArrayList;
 
-public class GramaticaTexto {
+public class Gramatica1Texto {
 
 	private int wraps;
 	private int maxWraps;
@@ -11,7 +11,7 @@ public class GramaticaTexto {
 	private int i;
 	private ArrayList<Integer> codones;
 
-	public GramaticaTexto(int maxWraps, int nCaso) {
+	public Gramatica1Texto(int maxWraps, int nCaso) {
 		this.wraps = 0;
 		this.maxWraps = maxWraps;
 		this.nCaso = nCaso;
@@ -100,11 +100,11 @@ public class GramaticaTexto {
 	// <pre-operation> ::= NOT (<expr>) | IF ((<expr>) (<expr>) (<expr>))
 
 	private String notPre() {// NOT (<expr>)
-		return "NOT (" + decodeExpr() + ")";
+		return "NOT(" + decodeExpr() + ")";
 	}
 
 	private String ifPre() {// IF ((<expr>) (<expr>) (<expr>))
-		return "IF (" + decodeExpr() + " ," + decodeExpr() + " ," + decodeExpr() + ")";
+		return "IF(" + decodeExpr() + " ," + decodeExpr() + " ," + decodeExpr() + ")";
 	}
 
 	private String decodePreOp() {
