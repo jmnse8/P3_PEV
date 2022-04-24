@@ -86,4 +86,21 @@ public class NodoOperacion extends Nodo{
 	public void addHijo(Nodo hijo) {
 		hijos.add(hijo);
 	}
+
+	@Override
+	public String aString() {
+		switch(op) {
+		case IF:
+			return "IF(" + hijos.get(0).aString() + " ," + hijos.get(1).aString() + " ," + hijos.get(2).aString() + ")"  ;
+		case NOT:
+			return "NOT (" + hijos.get(0).aString() + ")";
+		case AND:
+			return "(" + hijos.get(0).aString() + " AND " + hijos.get(1).aString() + ")";
+		case OR:
+			return "(" + hijos.get(0).aString() + " OR " + hijos.get(1).aString() + ")";
+		
+		default:
+			return "";
+		}
+	}
 }

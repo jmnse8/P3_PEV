@@ -139,4 +139,34 @@ public class NodoVariable extends Nodo{
 			break;
 		}
 	}
+
+	@Override
+	public String aString() {
+		switch(var) {
+		case A0:
+			return "A0";
+		case A1:
+			return "A1";
+		case A2:
+			return "A2";
+		case D0:
+			return "D0";
+		case D1:
+			return "D1";
+		case D2:
+			return "D2";
+		case D3:
+			return "D3";
+		case D4:
+			return "D4";
+		case D5:
+			return "D5";
+		case D6:
+			return "D6";
+		case D7:
+			return "D7";
+		default:
+			return "";
+		}
+	}
 }

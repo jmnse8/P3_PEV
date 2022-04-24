@@ -7,4 +7,5 @@ public abstract class Nodo {
 	public abstract void setTipo(NodoEnum tipo);
 	public abstract int getNumHijos();
 	public abstract void addHijo(Nodo hijo);
+	public abstract String aString();
 }
