@@ -8,6 +8,7 @@ public class NodoOperacion extends Nodo{
 	private ArrayList<Nodo> hijos;
 	
 	public NodoOperacion() {
+		hijos = new ArrayList<Nodo>();
 		Random rd = new Random();
 		int alea = rd.nextInt(4);
 		switch (alea) {
@@ -27,6 +28,7 @@ public class NodoOperacion extends Nodo{
 	}
 
 	public NodoOperacion(NodoEnum op) {
+		hijos = new ArrayList<Nodo>();
 		this.op = op;
 	}
 

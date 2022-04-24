@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.Random;
 
 import negocio.funcion.Funcion;
+import negocio.funcion.funcionGE.FuncionGE;
 import negocio.funcion.funcionPG.arbol.Nodo;
 import negocio.funcion.funcionPG.arbol.NodoEnum;
 import negocio.funcion.funcionPG.arbol.NodoOperacion;
@@ -227,5 +228,23 @@ public class FuncionPG implements Funcion, Cloneable {
 					return null;
 			}
 		}
+	}
+
+	@Override
+	public String toString() {
+		return "FuncionPG [individuo=" + individuo.aString() + ", fitness=" + fitness + "]";
+	}
+	
+	public static void main(String[] args) {
+		//for(int i = 0; i < 1; i++) {
+		Funcion f = new FuncionPG(1,4);
+		
+		
+		f.calculaFitness();
+		System.out.println(f.toString());
+		System.err.println(f.getFitness() + "\n");
+		
+		//}
+	
 	}
 }
