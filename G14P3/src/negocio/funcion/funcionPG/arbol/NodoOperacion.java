@@ -105,4 +105,8 @@ public class NodoOperacion extends Nodo{
 			return "";
 		}
 	}
+	
+	public ArrayList<Nodo> getHijos(){
+		return hijos;
+	}
 }
