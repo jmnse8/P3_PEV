@@ -23,8 +23,6 @@ public class AlgoritmoGenetico {
 
 	private MainFrame mF;
 
-	private double intervalo;
-
 	private int tamPoblacion;
 	private int numGeneraciones;
 
@@ -130,24 +128,58 @@ public class AlgoritmoGenetico {
 		}
 	}
 
-	private void iniPoblacion() {///INIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
-		int maximaProfundidad = mF.getMaxPr();//Falta por hacer
-		int metodoInicializacion = mF.getMetIni();
-		poblacion = new ArrayList<Funcion>();
-		for (int i = 0; i < tamPoblacion; i++) {
-			poblacion.add(FactoriaFuncion.getInstance().generaFuncion(funcionTipo,metodoInicializacion ,maximaProfundidad));
+	private void iniPoblacion() {
+		if(funcionTipo == FuncionEnum.Funcion_PG) {
+			
+			int maximaProfundidad = mF.getMaxPr();
+			int metodoInicializacion = mF.getMetIni();
+			poblacion = new ArrayList<Funcion>();
+			if(metodoInicializacion == 2) {
+				//RAMPED AND HALF
+				int grupoIndividuos = tamPoblacion / (maximaProfundidad - 1);
+				for (int pro = 2; pro <= maximaProfundidad; pro++) {//recorro grupos con las distintas profundidades
+					for(int j = 0; j < grupoIndividuos; j++)//recorro el grupo mandando a la mitad hacerse con completa y la otra con creciente
+						poblacion.add(FactoriaFuncion.getInstance().generaFuncion(funcionTipo,j % 2 ,pro));
+				}
+				if(tamPoblacion != poblacion.size())//no se han hecho toda la poblacion por no ser una división entera
+					poblacion.add(FactoriaFuncion.getInstance().generaFuncion(funcionTipo,0 ,maximaProfundidad));
+			}
+			else {//COMPLETA O CRECIENTE
+				for (int i = 0; i < tamPoblacion; i++) {
+					poblacion.add(FactoriaFuncion.getInstance().generaFuncion(funcionTipo,metodoInicializacion ,maximaProfundidad));
+				}
+			}
+			
+			max = poblacion.get(0).getMax();
+			presSelecAct = 0;
+			//if (max) {
+				mejGenAct = -1;
+				mediaAct = 0;
+				mejAbs = -1;
+			/*} else {
+				mejGenAct = Double.MAX_VALUE;
+				mediaAct = 0;
+				mejAbs = Double.MAX_VALUE;
+			}*/
 		}
-		max = poblacion.get(0).getMax();
-		presSelecAct = 0;
-		if (max) {
-			mejGenAct = -1;
-			mediaAct = 0;
-			mejAbs = -1;
-		} else {
-			mejGenAct = Double.MAX_VALUE;
-			mediaAct = 0;
-			mejAbs = Double.MAX_VALUE;
+		else {
+			poblacion = new ArrayList<Funcion>();
+			for (int i = 0; i < tamPoblacion; i++) {
+				poblacion.add(FactoriaFuncion.getInstance().generaFuncion(funcionTipo,0 ,0));
+			}
+			max = poblacion.get(0).getMax();
+			presSelecAct = 0;
+			//if (max) {
+				mejGenAct = -1;
+				mediaAct = 0;
+				mejAbs = -1;
+			/*} else {
+				mejGenAct = Double.MAX_VALUE;
+				mediaAct = 0;
+				mejAbs = Double.MAX_VALUE;
+			}*/
 		}
+		
 	}
 
 	private void dibujaGrafica() {
