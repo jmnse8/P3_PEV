@@ -2,13 +2,11 @@ package negocio.funcion.funcionPG;
 
 import java.util.Comparator;
 import java.util.Random;
-
 import negocio.funcion.Funcion;
-import negocio.funcion.funcionGE.FuncionGE;
 import negocio.funcion.funcionPG.arbol.Nodo;
-import negocio.funcion.funcionPG.arbol.NodoEnum;
 import negocio.funcion.funcionPG.arbol.NodoOperacion;
 import negocio.funcion.funcionPG.arbol.NodoVariable;
+import presentacion.mainFrame.MainFrame;
 
 public class FuncionPG implements Funcion, Cloneable {
 	
@@ -16,6 +14,7 @@ public class FuncionPG implements Funcion, Cloneable {
 	private double fitness;
 	private int nCaso;
 	private int maximaProdundidad;
+	private int profundidadMedia = 4;
 	
 	final static Comparator<Funcion> comp = new Comparator<Funcion>() {// comparador de esta función mediante el fitness
 		@Override
@@ -32,6 +31,7 @@ public class FuncionPG implements Funcion, Cloneable {
 	};
 	
 	public FuncionPG(int casoIni, int maximaProdundidad) {
+		nCaso = MainFrame.getInstance().getNFuncion();
 		this.maximaProdundidad = maximaProdundidad;
 		switch (casoIni) {//Ramped and Half se decide fuera, en AlgoritmoGenetico en inicialización de la población
 		case 0:
@@ -88,6 +88,12 @@ public class FuncionPG implements Funcion, Cloneable {
 		else 
 			caso = new int[11];
 		calculaCaso(caso, 0);
+		
+		//Método de BLOATING: le resto al fitness la diferencia con la profundidad media multiplicado por dos para que sea incremental la penalización.
+		int diferencia = individuo.getProfundidad() - profundidadMedia;
+		if(diferencia > 0)
+			fitness -= diferencia * 2;
+		//------------
 	}
 	
 	private void calculaCaso(int[] caso, int k) {
@@ -96,7 +102,6 @@ public class FuncionPG implements Funcion, Cloneable {
 			int solucionObtenida = individuo.getResultado(caso, nCaso);
 			if(solucionEsperada == solucionObtenida)
 				fitness++;
-			
 	        return;
 	    }
 		caso[k] = 0;

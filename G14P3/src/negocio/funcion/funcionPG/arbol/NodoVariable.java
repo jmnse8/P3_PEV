@@ -169,4 +169,9 @@ public class NodoVariable extends Nodo{
 			return "";
 		}
 	}
+
+	@Override
+	public int getProfundidad() {
+		return 1;
+	}
 }

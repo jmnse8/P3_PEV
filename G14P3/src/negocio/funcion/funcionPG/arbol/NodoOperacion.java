@@ -109,4 +109,14 @@ public class NodoOperacion extends Nodo{
 	public ArrayList<Nodo> getHijos(){
 		return hijos;
 	}
+
+	@Override
+	public int getProfundidad() {
+		int mayorProf = -1;
+		for(Nodo n: hijos) {
+			int prof = n.getProfundidad();
+			mayorProf = (prof >= mayorProf) ? prof : mayorProf;
+		}
+		return mayorProf + 1;
+	}
 }

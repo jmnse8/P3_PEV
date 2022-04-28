@@ -38,6 +38,7 @@ public class PanelMutacion extends JPanel {
 		cB.addItem("Intercambio");
 		cB.addItem("Inversión");
 		cB.addItem("Heurística");
+		cB.addItem("Terminal");
 		cB.setBounds(20, 20, 260, 20);
 		cB.setBackground(Colores.CLARO1);
 		cB.setForeground(Colores.OSCURO2);
@@ -57,7 +58,7 @@ public class PanelMutacion extends JPanel {
 		add(infoS);
 	}
 
-	public MutacionEnum getMutacion() {
+	public MutacionEnum getMutacion() {//Mutacion_Terminal
 		switch ((String) cB.getSelectedItem()) {
 		case "Inserción":
 			return MutacionEnum.Mutacion_Insercion;
@@ -67,6 +68,8 @@ public class PanelMutacion extends JPanel {
 			return MutacionEnum.Mutacion_Inversion;
 		case "Heurística":
 			return MutacionEnum.Mutacion_Heuristica;
+		case "Terminal":
+			return MutacionEnum.Mutacion_Terminal;
 		default:
 			return MutacionEnum.Mutacion_Insercion;
 		}

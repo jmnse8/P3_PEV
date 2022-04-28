@@ -40,6 +40,7 @@ public class PanelCruce extends JPanel {
 		cB.addItem("OX");
 		cB.addItem("OXPP");
 		cB.addItem("OXOP");
+		cB.addItem("Intercambio subárboles");
 		cB.setBounds(20, 20, 260, 20);
 		cB.setBackground(Colores.CLARO1);
 		cB.setForeground(Colores.OSCURO2);
@@ -72,6 +73,8 @@ public class PanelCruce extends JPanel {
 			return CruceEnum.Cruce_OXPP;
 		case "OXOP":
 			return CruceEnum.Cruce_OXOP;
+		case "Intercambio subárboles":
+			return CruceEnum.Cruce_Arbol;
 		default:
 			return CruceEnum.Cruce_PMX;
 		}

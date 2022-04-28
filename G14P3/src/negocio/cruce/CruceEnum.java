@@ -2,6 +2,7 @@ package negocio.cruce;
 
 import negocio.cruce.crucePMX.CrucePMX;
 import negocio.cruce.cruceCX.CruceCX;
+import negocio.cruce.cruceArbol.CruceArbol;
 import negocio.cruce.cruceCO.CruceCO;
 import negocio.cruce.cruceOX.CruceOX;
 import negocio.cruce.cruceOX.CruceOXPP;
@@ -13,7 +14,8 @@ public enum CruceEnum {
 	Cruce_PMX(new CrucePMX()),
 	Cruce_OX(new CruceOX()),
 	Cruce_OXPP(new CruceOXPP()),
-	Cruce_OXOP(new CruceOXOP());
+	Cruce_OXOP(new CruceOXOP()),
+	Cruce_Arbol(new CruceArbol());
 	
 	private Cruce cruce;
 	
