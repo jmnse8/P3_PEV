@@ -34,11 +34,13 @@ public class PanelMutacion extends JPanel {
 		setBorder(BorderFactory.createTitledBorder(b, "ELIGE EL TIPO DE MUTACIÓN ", TitledBorder.LEFT, TitledBorder.TOP,new Font("Arial", Font.BOLD, 15),Colores.OSCURO2));
 
 		cB = new JComboBox<String>();
+		cB.addItem("Basica");
 		cB.addItem("Inserción");
 		cB.addItem("Intercambio");
 		cB.addItem("Inversión");
 		cB.addItem("Heurística");
 		cB.addItem("Terminal");
+		cB.addItem("Funcional");
 		cB.setBounds(20, 20, 260, 20);
 		cB.setBackground(Colores.CLARO1);
 		cB.setForeground(Colores.OSCURO2);
@@ -68,8 +70,12 @@ public class PanelMutacion extends JPanel {
 			return MutacionEnum.Mutacion_Inversion;
 		case "Heurística":
 			return MutacionEnum.Mutacion_Heuristica;
+		case "Basica":
+			return MutacionEnum.Mutacion_Basica;
 		case "Terminal":
 			return MutacionEnum.Mutacion_Terminal;
+		case "Funcional":
+			return MutacionEnum.Mutacion_Funcional;
 		default:
 			return MutacionEnum.Mutacion_Insercion;
 		}

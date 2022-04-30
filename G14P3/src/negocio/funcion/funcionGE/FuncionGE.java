@@ -69,7 +69,7 @@ public class FuncionGE implements Funcion, Cloneable {
 		
 		
 		while (cont < tamGen) {// meto los nº del individuo mediante aleatorios
-			int numero = rd.nextInt(256);
+			int numero = rd.nextInt(64);//256
 			//if (!individuo.contains(numero + 1)) {
 				individuo.add(numero);
 				cont++;

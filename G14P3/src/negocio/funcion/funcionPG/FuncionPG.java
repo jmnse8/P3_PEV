@@ -34,10 +34,10 @@ public class FuncionPG implements Funcion, Cloneable {
 		nCaso = MainFrame.getInstance().getNFuncion();
 		this.maximaProdundidad = maximaProdundidad;
 		switch (casoIni) {//Ramped and Half se decide fuera, en AlgoritmoGenetico en inicialización de la población
-		case 0:
+		case 1:
 			individuo = inicializaCompleta(0);
 			break;
-		case 1:
+		case 0:
 			individuo = inicializaCreciente(0);
 			break;
 		}
