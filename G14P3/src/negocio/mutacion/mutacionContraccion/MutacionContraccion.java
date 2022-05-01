@@ -31,15 +31,15 @@ public class MutacionContraccion implements Mutacion {
 					}else {
 						int totalNietos = 0; //Para ver si todos sus hijos son terminales
 						NodoOperacion aux = (NodoOperacion) act;
-						for (int x = 0; x < act.getNumHijos(); x++) {
+						for (int x = 0; x < act.getNumHijos(); x++) { //Comprobamos que tenga algun hijo que sea una funcion
 							totalNietos += aux.getHijos().get(x).getNumHijos();
 						}
 						
-						if (totalNietos == 0) cont = false;
+						if (totalNietos == 0) cont = false; //Si ningun hijo es funcion nos lo quedamos
 						else {
 							float rndFloat = rnd.nextFloat();
-							if (rndFloat < 0.5 && prev != null) cont = false;
-							else {
+							if (rndFloat < 0.5 && prev != null) cont = false; //50% de probabilidad de quedarnos este nodo
+							else {//si no cogemos el nodo anterior cogemos uno de sus hijos de forma aleatoria
 								rndInt = rnd.nextInt(act.getNumHijos());
 								while (aux.getHijos().get(rndInt).getNumHijos() == 0) {
 									rndInt = rnd.nextInt(act.getNumHijos());
@@ -51,7 +51,7 @@ public class MutacionContraccion implements Mutacion {
 					}
 				}
 				
-				NodoVariable newNodo = new NodoVariable(gen.getCaso());
+				NodoVariable newNodo = new NodoVariable(gen.getCaso()); //Creamos el nuevo nodo
 				if (prev != null && prev.getNumHijos() != 0) {
 					NodoOperacion aux = (NodoOperacion)prev;
 					aux.getHijos().set(rndInt, newNodo);

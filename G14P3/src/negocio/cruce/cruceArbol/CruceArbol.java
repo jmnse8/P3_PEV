@@ -56,20 +56,9 @@ public class CruceArbol implements Cruce{
 						nodo1 = act;
 						cont = false;
 					}else {//No nos hemos quedado con el nodo actual así que cogemos un hijo aleatorio
-						int hijos = act.getNumHijos();
 						NodoOperacion aux = (NodoOperacion)act;
-						random = rnd.nextFloat(); //Generamos otro numero aleatorio
-						if (hijos == 1) act = aux.getHijos().get(0); //Si solo tiene un hijo lo cogemos
-						else if (hijos == 2) {
-							//Elegimos aleatoriamente unos de los hijos
-							if (random < 0.5) act = aux.getHijos().get(0);
-							else act = aux.getHijos().get(1);
-						}else {
-							//Elegimos alatoriamente uno de los hijos
-							if (random < 0.33) act = aux.getHijos().get(0);
-							else if (random < 0.67) act = aux.getHijos().get(1);
-							else act = aux.getHijos().get(2);
-						}
+						int rndInt = rnd.nextInt(act.getNumHijos()); //Generamos otro numero aleatorio
+						act = aux.getHijos().get(rndInt); //Vamos al siguiente nodo
 					}
 				}
 			}
@@ -87,20 +76,9 @@ public class CruceArbol implements Cruce{
 						nodo2 = act;
 						cont = false;
 					}else {//No nos hemos quedado con el nodo actual así que cogemos un hijo aleatorio
-						int hijos = act.getNumHijos();
 						NodoOperacion aux = (NodoOperacion)act;
-						random = rnd.nextFloat(); //Generamos otro numero aleatorio
-						if (hijos == 1) act = aux.getHijos().get(0); //Si solo tiene un hijo lo cogemos
-						else if (hijos == 2) {
-							//Elegimos aleatoriamente unos de los hijos
-							if (random < 0.5) act = aux.getHijos().get(0);
-							else act = aux.getHijos().get(1);
-						}else {
-							//Elegimos alatoriamente uno de los hijos
-							if (random < 0.33) act = aux.getHijos().get(0);
-							else if (random < 0.67) act = aux.getHijos().get(1);
-							else act = aux.getHijos().get(2);
-						}
+						int rndInt = rnd.nextInt(act.getNumHijos()); //Generamos otro numero aleatorio
+						act = aux.getHijos().get(rndInt); //Vamos al siguiente nodo
 					}
 				}
 			}
