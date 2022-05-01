@@ -41,6 +41,7 @@ public class PanelMutacion extends JPanel {
 		cB.addItem("Heurística");
 		cB.addItem("Terminal");
 		cB.addItem("Funcional");
+		cB.addItem("Contraccion");
 		cB.setBounds(20, 20, 260, 20);
 		cB.setBackground(Colores.CLARO1);
 		cB.setForeground(Colores.OSCURO2);
@@ -76,6 +77,8 @@ public class PanelMutacion extends JPanel {
 			return MutacionEnum.Mutacion_Terminal;
 		case "Funcional":
 			return MutacionEnum.Mutacion_Funcional;
+		case "Contraccion":
+			return MutacionEnum.Mutacion_Contraccion;
 		default:
 			return MutacionEnum.Mutacion_Insercion;
 		}

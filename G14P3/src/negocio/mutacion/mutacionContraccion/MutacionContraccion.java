@@ -22,32 +22,40 @@ public class MutacionContraccion implements Mutacion {
 				
 				boolean cont = true;
 				Nodo act = gen;
-				int random = 0;
-				while(cont && act.getNumHijos() != 0) {//Busco AND u OR
-					if (act.getNumHijos() == 2) {//Es OR o AND
-						cont = false;
-						if (act.getTipo() == NodoEnum.AND) act.setTipo(NodoEnum.OR);
-						else act.setTipo(NodoEnum.AND);
-					}else {//Buscamos otro nodo
-						boolean next = false;
-						NodoOperacion operacion = (NodoOperacion)act;
-						for (int j = 0; j < operacion.getNumHijos(); j++) {
-							if (operacion.getHijos().get(j).getNumHijos() == 2) {
-								act = operacion.getHijos().get(j);
-								next = true;
-							}
+				Nodo prev = null; //Padre del elegido
+				int rndInt = 0;
+				
+				while (cont) { //Seleccionamos el primer nodo a intercambiar
+					if (act.getNumHijos() == 0) {
+						cont = false; 
+					}else {
+						int totalNietos = 0; //Para ver si todos sus hijos son terminales
+						NodoOperacion aux = (NodoOperacion) act;
+						for (int x = 0; x < act.getNumHijos(); x++) {
+							totalNietos += aux.getHijos().get(x).getNumHijos();
 						}
 						
-						if (!next) {
-							random = rnd.nextInt(operacion.getNumHijos());
-							act = operacion.getHijos().get(random);
+						if (totalNietos == 0) cont = false;
+						else {
+							float rndFloat = rnd.nextFloat();
+							if (rndFloat < 0.5 && prev != null) cont = false;
+							else {
+								rndInt = rnd.nextInt(act.getNumHijos());
+								while (aux.getHijos().get(rndInt).getNumHijos() == 0) {
+									rndInt = rnd.nextInt(act.getNumHijos());
+								}
+								prev = act;
+								act = aux.getHijos().get(rndInt);
+							}
 						}
 					}
-
 				}
 				
-				
-				
+				NodoVariable newNodo = new NodoVariable(gen.getCaso());
+				if (prev != null && prev.getNumHijos() != 0) {
+					NodoOperacion aux = (NodoOperacion)prev;
+					aux.getHijos().set(rndInt, newNodo);
+				}
 				poblacion.get(i).setIndividuo(gen);// Guardo el gen
 			}
 		}

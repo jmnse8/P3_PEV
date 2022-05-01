@@ -9,4 +9,5 @@ public abstract class Nodo {
 	public abstract void addHijo(Nodo hijo);
 	public abstract String aString();
 	public abstract int getProfundidad();
+	public abstract int getCaso();
 }

@@ -46,7 +46,7 @@ public class FuncionPG implements Funcion, Cloneable {
 	private Nodo inicializaCompleta(int profundidad) {
 		Nodo nodo = null;
 		if(profundidad < maximaProdundidad) {
-			nodo = new NodoOperacion();
+			nodo = new NodoOperacion(nCaso);
 			for(int i = 0; i < nodo.getNumHijos(); i++) {
 				nodo.addHijo(inicializaCompleta(profundidad + 1));
 			}
@@ -63,7 +63,7 @@ public class FuncionPG implements Funcion, Cloneable {
 		if(profundidad < maximaProdundidad) {
 			//nodo = getNodoCreciente();
 			Random rd = new Random();
-			nodo = (rd.nextBoolean()) ? new NodoOperacion() : new NodoVariable(nCaso);
+			nodo = (rd.nextBoolean()) ? new NodoOperacion(nCaso) : new NodoVariable(nCaso);
 			for(int i = 0; i < nodo.getNumHijos(); i++) {
 				nodo.addHijo(inicializaCompleta(profundidad + 1));
 			}

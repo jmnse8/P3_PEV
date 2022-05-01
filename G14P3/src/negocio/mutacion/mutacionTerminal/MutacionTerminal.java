@@ -31,18 +31,8 @@ public class MutacionTerminal implements Mutacion {
 					}else {//Elegimos aleatoriamente un hijo de este nodo
 						random = rnd.nextFloat();
 						NodoOperacion aux = (NodoOperacion)act;
-						int numHijos = act.getNumHijos();
-						if (numHijos == 1) act = aux.getHijos().get(0); //Si solo tiene un hijo lo cogemos
-						else if (numHijos == 2) {
-							//Elegimos aleatoriamente unos de los hijos
-							if (random < 0.5) act = aux.getHijos().get(0);
-							else act = aux.getHijos().get(1);
-						}else {
-							//Elegimos alatoriamente uno de los hijos
-							if (random < 0.33) act = aux.getHijos().get(0);
-							else if (random < 0.67) act = aux.getHijos().get(1);
-							else act = aux.getHijos().get(2);
-						}
+						int rndInt = rnd.nextInt(act.getNumHijos());
+						act = aux.getHijos().get(rndInt);
 					}
 				}
 				
@@ -51,9 +41,8 @@ public class MutacionTerminal implements Mutacion {
 				NodoEnum nuevo = tipo;
 				
 				//Comprobamos que el nuevo valor ni es el anterior ni es de operacion
-				while (nuevo == tipo || nuevo == NodoEnum.IF || nuevo == NodoEnum.NOT || nuevo == NodoEnum.AND || nuevo == NodoEnum.OR) {
-					int x = rnd.nextInt(NodoEnum.class.getEnumConstants().length);
-				    nuevo = NodoEnum.class.getEnumConstants()[x];
+				while (nuevo == tipo) {
+					nuevo = cambio.getRandomVariable();
 				}
 				
 				cambio.setTipo(nuevo);//Cambiamos el tipo

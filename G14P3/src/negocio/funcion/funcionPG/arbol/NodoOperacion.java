@@ -6,9 +6,11 @@ import java.util.Random;
 public class NodoOperacion extends Nodo{
 	private NodoEnum op;
 	private ArrayList<Nodo> hijos;
+	private int caso;
 	
-	public NodoOperacion() {
+	public NodoOperacion(int nCaso) {
 		hijos = new ArrayList<Nodo>();
+		caso = nCaso;
 		Random rd = new Random();
 		int alea = rd.nextInt(4);
 		switch (alea) {
@@ -118,5 +120,9 @@ public class NodoOperacion extends Nodo{
 			mayorProf = (prof >= mayorProf) ? prof : mayorProf;
 		}
 		return mayorProf + 1;
+	}
+	
+	public int getCaso() {
+		return caso;
 	}
 }

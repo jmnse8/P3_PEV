@@ -4,9 +4,11 @@ import java.util.Random;
 
 public class NodoVariable extends Nodo{
 	private NodoEnum var;
-
+	private int caso;
+	
 	public NodoVariable(int nCaso) {
 		iniVar(nCaso);
+		caso = nCaso;
 	}
 
 	public NodoVariable(NodoEnum var) {
@@ -173,5 +175,61 @@ public class NodoVariable extends Nodo{
 	@Override
 	public int getProfundidad() {
 		return 1;
+	}
+	
+	public NodoEnum getRandomVariable() {
+		Random rd = new Random();
+		int alea;
+		switch(caso) {
+		case 0:
+			alea = rd.nextInt(6);
+			switch (alea) {
+				case 0:
+					return NodoEnum.A0;
+				case 1:
+					return NodoEnum.A1;
+				case 2:
+					return NodoEnum.D0;
+				case 3:
+					return NodoEnum.D1;
+				case 4:
+					return NodoEnum.D2;
+				case 5:
+					return NodoEnum.D3;
+			}
+			break;
+		case 1:
+			alea = rd.nextInt(11);
+			switch (alea) {
+				case 0:
+					return NodoEnum.A0;
+				case 1:
+					return NodoEnum.A1;
+				case 2:
+					return NodoEnum.A2;
+				case 3:
+					return NodoEnum.D0;
+				case 4:
+					return NodoEnum.D1;
+				case 5:
+					return NodoEnum.D2;
+				case 6:
+					return NodoEnum.D3;
+				case 7:
+					return NodoEnum.D4;
+				case 8:
+					return NodoEnum.D5;
+				case 9:
+					return NodoEnum.D6;
+				case 10:
+					return NodoEnum.D7;
+			}
+			break;
+		}
+		return NodoEnum.A0;//Por si acaso para que el compilador no se queje
+	}
+	
+	public int getCaso() {
+		return caso;
 	}
 }
