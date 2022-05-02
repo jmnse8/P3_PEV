@@ -137,7 +137,7 @@ public class FuncionPG implements Funcion, Cloneable {
 
 	@Override
 	public Object getIndividuo() {
-		return getIndividuoCopia();
+		return individuo;
 	}
 
 	@Override
@@ -258,14 +258,15 @@ public class FuncionPG implements Funcion, Cloneable {
 	}
 	/*
 	public static void main(String[] args) {
-		for(int i = 0; i < 10; i++) {
+		//for(int i = 0; i < 10; i++) {
 		Funcion f = new FuncionPG(1,4);
 		
 		
 		f.calculaFitness();
-		System.out.println(f.toString());
-		
-		}
+		//System.out.println(f.toString());
+		Funcion f2 = f.getCopy();
+		System.out.println(f2.toString());
+		//}
 	
 	}*/
 }

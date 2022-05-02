@@ -236,11 +236,11 @@ public class AlgoritmoGenetico {
 		}
 		Collections.sort(poblacion, poblacion.get(0).getComp());
 		for (int i = 0; i < tamPoblacion; i++) {
-			sumaAdaptado += (poblacion.get(tamPoblacion - 1).getFitness()  * 1.05) - poblacion.get(i).getFitness();
+			sumaAdaptado += (poblacion.get(tamPoblacion - 1).getFitness()  * 1.05) + poblacion.get(i).getFitness();
 		}
 		mediaAct = suma / tamPoblacion;
 		mejGenAct = mA;
-		double adaptado = (poblacion.get(tamPoblacion - 1).getFitness()  * 1.05) - poblacion.get(0).getFitness();
+		double adaptado = (poblacion.get(tamPoblacion - 1).getFitness()  * 1.05) + poblacion.get(0).getFitness();
 		presSelecAct = (adaptado/sumaAdaptado) * tamPoblacion;
 	}
 }

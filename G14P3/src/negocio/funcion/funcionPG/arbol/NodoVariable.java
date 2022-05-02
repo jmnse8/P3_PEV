@@ -283,5 +283,34 @@ public class NodoVariable extends Nodo{
 		nV.setPadre(papa);
 		return nV;
 	}
-	
+/*
+	private NodoEnum getVarCopia() {
+		switch(var) {
+			case A0:
+				return NodoEnum.A0;
+			case A1:
+				return NodoEnum.A1;
+			case A2:
+				return NodoEnum.A2;
+			case D0:
+				return NodoEnum.D0;
+			case D1:
+				return NodoEnum.D1;
+			case D2:
+				return NodoEnum.D2;
+			case D3:
+				return NodoEnum.D3;
+			case D4:
+				return NodoEnum.D4;
+			case D5:
+				return NodoEnum.D5;
+			case D6:
+				return NodoEnum.D6;
+			case D7:
+				return NodoEnum.D7;
+			default:
+				return NodoEnum.A0;
+		}
+	}
+	*/
 }

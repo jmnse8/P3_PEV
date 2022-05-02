@@ -191,6 +191,20 @@ public class NodoOperacion extends Nodo{
 			nO.addHijo(n.getCopia(this));
 		}
 		return nO;
-	}
+	}/*
+	private NodoEnum getOpCopia() {
+		switch(op) {
+		case IF:
+			return NodoEnum.IF;
+		case NOT:
+			return NodoEnum.NOT;
+		case AND:
+			return NodoEnum.AND;
+		case OR:
+			return NodoEnum.OR;
+		default:
+			return NodoEnum.NOT;
+		}
+	}*/
 	
 }
