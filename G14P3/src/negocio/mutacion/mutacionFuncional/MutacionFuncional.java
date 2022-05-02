@@ -32,15 +32,15 @@ public class MutacionFuncional implements Mutacion {
 						boolean next = false;
 						NodoOperacion operacion = (NodoOperacion)act;
 						for (int j = 0; j < operacion.getNumHijos(); j++) {
-							if (operacion.getHijos().get(j).getNumHijos() == 2) {
-								act = operacion.getHijos().get(j);
+							if (operacion.getHijo(j).getNumHijos() == 2) {
+								act = operacion.getHijo(j);
 								next = true;
 							}
 						}
 						
 						if (!next) {
 							random = rnd.nextInt(operacion.getNumHijos());
-							act = operacion.getHijos().get(random);
+							act = operacion.getHijo(random);
 						}
 					}
 

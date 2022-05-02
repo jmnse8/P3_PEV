@@ -201,7 +201,7 @@ public class AlgoritmoGenetico {
 	private void guardarElite() {
 		elite = new ArrayList<Funcion>();
 		for (int i = 0; i < numElite; i++)
-			elite.add(poblacion.get(i));
+			elite.add(poblacion.get(i).getCopy());
 	}
 
 	private void meteElite() {

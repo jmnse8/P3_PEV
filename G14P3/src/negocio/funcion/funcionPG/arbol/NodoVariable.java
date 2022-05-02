@@ -4,15 +4,16 @@ import java.util.Random;
 
 public class NodoVariable extends Nodo{
 	private NodoEnum var;
-	private int caso;
+	private Nodo padre;
 	
 	public NodoVariable(int nCaso) {
+		padre = null;
 		iniVar(nCaso);
-		caso = nCaso;
 	}
 
 	public NodoVariable(NodoEnum var) {
 		this.var = var;
+		padre = null;
 	}
 
 	@Override
@@ -177,10 +178,10 @@ public class NodoVariable extends Nodo{
 		return 1;
 	}
 	
-	public NodoEnum getRandomVariable() {
+	public NodoEnum getRandomVariable(int nCaso) {
 		Random rd = new Random();
 		int alea;
-		switch(caso) {
+		switch(nCaso) {
 		case 0:
 			alea = rd.nextInt(6);
 			switch (alea) {
@@ -228,8 +229,59 @@ public class NodoVariable extends Nodo{
 		}
 		return NodoEnum.A0;//Por si acaso para que el compilador no se queje
 	}
-	
-	public int getCaso() {
-		return caso;
+
+	@Override
+	public boolean esOperacion() {
+		return false;
 	}
+
+	@Override
+	public Nodo getHijo(int pos) {
+		return this;
+	}
+
+	@Override
+	public void cambiaArbol(Nodo nodo1, Nodo nodo2) {
+		
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((var == null) ? 0 : var.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		NodoVariable other = (NodoVariable) obj;
+		if (var != other.var)
+			return false;
+		return true;
+	}
+
+	@Override
+	public Nodo getPadre() {
+		return padre;
+	}
+
+	@Override
+	public void setPadre(Nodo padre) {
+		this.padre = padre;
+	}
+
+	@Override
+	public Nodo getCopia(Nodo papa) {
+		NodoVariable nV = new NodoVariable(var);
+		nV.setPadre(papa);
+		return nV;
+	}
+	
 }

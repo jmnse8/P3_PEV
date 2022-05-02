@@ -5,6 +5,7 @@ import java.util.Random;
 
 import negocio.funcion.Funcion;
 import negocio.mutacion.Mutacion;
+import presentacion.mainFrame.MainFrame;
 import negocio.funcion.funcionPG.arbol.*;
 
 public class MutacionTerminal implements Mutacion {
@@ -30,9 +31,9 @@ public class MutacionTerminal implements Mutacion {
 						cont = false; 
 					}else {//Elegimos aleatoriamente un hijo de este nodo
 						random = rnd.nextFloat();
-						NodoOperacion aux = (NodoOperacion)act;
+						//NodoOperacion aux = (NodoOperacion)act;
 						int rndInt = rnd.nextInt(act.getNumHijos());
-						act = aux.getHijos().get(rndInt);
+						act = act.getHijo(rndInt);//aux.getHijos().get(rndInt);
 					}
 				}
 				
@@ -42,7 +43,7 @@ public class MutacionTerminal implements Mutacion {
 				
 				//Comprobamos que el nuevo valor ni es el anterior ni es de operacion
 				while (nuevo == tipo) {
-					nuevo = cambio.getRandomVariable();
+					nuevo = cambio.getRandomVariable(MainFrame.getInstance().getNFuncion());
 				}
 				
 				cambio.setTipo(nuevo);//Cambiamos el tipo

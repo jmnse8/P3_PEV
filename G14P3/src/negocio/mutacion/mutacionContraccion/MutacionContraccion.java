@@ -5,6 +5,7 @@ import java.util.Random;
 
 import negocio.funcion.Funcion;
 import negocio.mutacion.Mutacion;
+import presentacion.mainFrame.MainFrame;
 import negocio.funcion.funcionPG.arbol.*;
 
 public class MutacionContraccion implements Mutacion {
@@ -32,7 +33,7 @@ public class MutacionContraccion implements Mutacion {
 						int totalNietos = 0; //Para ver si todos sus hijos son terminales
 						NodoOperacion aux = (NodoOperacion) act;
 						for (int x = 0; x < act.getNumHijos(); x++) { //Comprobamos que tenga algun hijo que sea una funcion
-							totalNietos += aux.getHijos().get(x).getNumHijos();
+							totalNietos += aux.getHijo(x).getNumHijos();
 						}
 						
 						if (totalNietos == 0) cont = false; //Si ningun hijo es funcion nos lo quedamos
@@ -41,20 +42,20 @@ public class MutacionContraccion implements Mutacion {
 							if (rndFloat < 0.5 && prev != null) cont = false; //50% de probabilidad de quedarnos este nodo
 							else {//si no cogemos el nodo anterior cogemos uno de sus hijos de forma aleatoria
 								rndInt = rnd.nextInt(act.getNumHijos());
-								while (aux.getHijos().get(rndInt).getNumHijos() == 0) {
+								while (aux.getHijo(rndInt).getNumHijos() == 0) {
 									rndInt = rnd.nextInt(act.getNumHijos());
 								}
 								prev = act;
-								act = aux.getHijos().get(rndInt);
+								act = aux.getHijo(rndInt);
 							}
 						}
 					}
 				}
 				
-				NodoVariable newNodo = new NodoVariable(gen.getCaso()); //Creamos el nuevo nodo
+				NodoVariable newNodo = new NodoVariable(MainFrame.getInstance().getNFuncion()); //Creamos el nuevo nodo
 				if (prev != null && prev.getNumHijos() != 0) {
 					NodoOperacion aux = (NodoOperacion)prev;
-					aux.getHijos().set(rndInt, newNodo);
+					aux.setHijo(rndInt, newNodo);
 				}
 				poblacion.get(i).setIndividuo(gen);// Guardo el gen
 			}

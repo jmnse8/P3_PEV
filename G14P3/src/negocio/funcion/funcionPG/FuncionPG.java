@@ -45,10 +45,11 @@ public class FuncionPG implements Funcion, Cloneable {
 
 	private Nodo inicializaCompleta(int profundidad) {
 		Nodo nodo = null;
-		if(profundidad < maximaProdundidad) {
-			nodo = new NodoOperacion(nCaso);
+		if(profundidad < maximaProdundidad - 1) {
+			nodo = new NodoOperacion();
 			for(int i = 0; i < nodo.getNumHijos(); i++) {
 				nodo.addHijo(inicializaCompleta(profundidad + 1));
+				nodo.getHijo(i).setPadre(nodo);
 			}
 		}
 		else {
@@ -60,12 +61,20 @@ public class FuncionPG implements Funcion, Cloneable {
 
 	private Nodo inicializaCreciente(int profundidad) {
 		Nodo nodo = null;
-		if(profundidad < maximaProdundidad) {
-			//nodo = getNodoCreciente();
-			Random rd = new Random();
-			nodo = (rd.nextBoolean()) ? new NodoOperacion(nCaso) : new NodoVariable(nCaso);
+		if(profundidad == 0) {
+			nodo = new NodoOperacion();
 			for(int i = 0; i < nodo.getNumHijos(); i++) {
 				nodo.addHijo(inicializaCompleta(profundidad + 1));
+				nodo.getHijo(i).setPadre(nodo);
+			}
+		}
+		else if(profundidad < maximaProdundidad - 1) {
+			//nodo = getNodoCreciente();
+			Random rd = new Random();
+			nodo = (rd.nextBoolean()) ? new NodoOperacion() : new NodoVariable(nCaso);
+			for(int i = 0; i < nodo.getNumHijos(); i++) {
+				nodo.addHijo(inicializaCompleta(profundidad + 1));
+				nodo.getHijo(i).setPadre(nodo);
 			}
 		}
 		else {
@@ -93,10 +102,11 @@ public class FuncionPG implements Funcion, Cloneable {
 		int diferencia = individuo.getProfundidad() - profundidadMedia;
 		if(diferencia > 0)
 			fitness -= diferencia * 2;
+		//System.out.println(fitness + " " + individuo.aString()+ " " + individuo.getProfundidad() + " " + maximaProdundidad);
 		//------------
 	}
 	
-	private void calculaCaso(int[] caso, int k) {
+	private void calculaCaso(int[] caso, int k) {//System.out.println(individuo.aString() + " " + caso.toString());
 		if (k == caso.length) {
 			int solucionEsperada = getSolEsp(caso);
 			int solucionObtenida = individuo.getResultado(caso, nCaso);
@@ -127,7 +137,7 @@ public class FuncionPG implements Funcion, Cloneable {
 
 	@Override
 	public Object getIndividuo() {
-		return individuo;
+		return getIndividuoCopia();
 	}
 
 	@Override
@@ -158,6 +168,7 @@ public class FuncionPG implements Funcion, Cloneable {
 		} catch (CloneNotSupportedException e) {
 			e.printStackTrace();
 		}
+		aux.setIndividuo(getIndividuoCopia());
 		return aux;
 	}
 
@@ -241,7 +252,11 @@ public class FuncionPG implements Funcion, Cloneable {
 	public String toString() {
 		return individuo.aString() + "\n\tfitness = " + fitness;
 	}
-	
+	private Nodo getIndividuoCopia() {
+		Nodo ind = individuo.getCopia(null);
+		return ind;
+	}
+	/*
 	public static void main(String[] args) {
 		for(int i = 0; i < 10; i++) {
 		Funcion f = new FuncionPG(1,4);
@@ -252,5 +267,5 @@ public class FuncionPG implements Funcion, Cloneable {
 		
 		}
 	
-	}
+	}*/
 }

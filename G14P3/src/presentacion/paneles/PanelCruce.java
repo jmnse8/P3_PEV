@@ -36,12 +36,12 @@ public class PanelCruce extends JPanel {
 		cB = new JComboBox<String>();
 		cB.addItem("Uniforme");
 		cB.addItem("Monopunto");
-		cB.addItem("PMX");
+		/*cB.addItem("PMX");
 		cB.addItem("CX");
 		cB.addItem("CO");
 		cB.addItem("OX");
 		cB.addItem("OXPP");
-		cB.addItem("OXOP");
+		cB.addItem("OXOP");*/
 		cB.addItem("Intercambio subárboles");
 		cB.setBounds(20, 20, 260, 20);
 		cB.setBackground(Colores.CLARO1);

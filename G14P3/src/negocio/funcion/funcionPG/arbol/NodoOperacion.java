@@ -6,11 +6,11 @@ import java.util.Random;
 public class NodoOperacion extends Nodo{
 	private NodoEnum op;
 	private ArrayList<Nodo> hijos;
-	private int caso;
+	private Nodo padre;
 	
-	public NodoOperacion(int nCaso) {
+	public NodoOperacion() {
+		padre = null;
 		hijos = new ArrayList<Nodo>();
-		caso = nCaso;
 		Random rd = new Random();
 		int alea = rd.nextInt(4);
 		switch (alea) {
@@ -32,6 +32,7 @@ public class NodoOperacion extends Nodo{
 	public NodoOperacion(NodoEnum op) {
 		hijos = new ArrayList<Nodo>();
 		this.op = op;
+		padre = null;
 	}
 
 	@Override
@@ -50,7 +51,6 @@ public class NodoOperacion extends Nodo{
 			return (hijos.get(0).getResultado(caso, nCaso) == 1 && hijos.get(1).getResultado(caso, nCaso) == 1)? 1 : 0;
 		case OR:
 			return (hijos.get(0).getResultado(caso, nCaso) == 1 || hijos.get(1).getResultado(caso, nCaso) == 1)? 1 : 0;
-		
 		default:
 			return 0;
 		}
@@ -108,9 +108,6 @@ public class NodoOperacion extends Nodo{
 		}
 	}
 	
-	public ArrayList<Nodo> getHijos(){
-		return hijos;
-	}
 
 	@Override
 	public int getProfundidad() {
@@ -121,8 +118,79 @@ public class NodoOperacion extends Nodo{
 		}
 		return mayorProf + 1;
 	}
-	
-	public int getCaso() {
-		return caso;
+
+	@Override
+	public boolean esOperacion() {
+		return true;
 	}
+
+	@Override
+	public Nodo getHijo(int pos) {
+		return hijos.get(pos);
+	}
+
+	@Override
+	public void cambiaArbol(Nodo nodo1, Nodo nodo2) {
+		for(int i = 0; i < hijos.size(); i++) {
+			if(hijos.get(i) == nodo1) {
+				hijos.set(i, nodo2);
+				nodo2.setPadre(this);
+				break;
+			}
+			/*else {
+				hijos.get(i).cambiaArbol(nodo1, nodo2);
+			}*/
+		}
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((hijos == null) ? 0 : hijos.hashCode());
+		result = prime * result + ((op == null) ? 0 : op.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof NodoOperacion))
+			return false;
+		NodoOperacion other = (NodoOperacion) obj;
+		if (hijos == null) {
+			if (other.hijos != null)
+				return false;
+		} else if (!hijos.equals(other.hijos))
+			return false;
+		if (op != other.op)
+			return false;
+		return true;
+	}
+
+	public void setHijo(int rndInt, NodoVariable newNodo) {
+		hijos.set(rndInt, newNodo);
+	}
+
+	@Override
+	public Nodo getPadre() {
+		return padre;
+	}
+
+	@Override
+	public void setPadre(Nodo padre) {
+		this.padre = padre;
+	}
+
+	@Override
+	public Nodo getCopia(Nodo papa) {
+		NodoOperacion nO = new NodoOperacion(op);
+		nO.setPadre(papa);
+		for (Nodo n : hijos) {
+			nO.addHijo(n.getCopia(this));
+		}
+		return nO;
+	}
+	
 }
