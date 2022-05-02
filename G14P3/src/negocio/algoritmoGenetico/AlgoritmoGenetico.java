@@ -104,6 +104,15 @@ public class AlgoritmoGenetico {
 				evaluar();
 			}
 			guardarDatos(generacionActual);
+			if(generacionActual % 200 == 0 && generacionActual > 0) {
+				guardarElite();
+				resetPoblacion();
+				evaluar();
+				meteElite();
+				evaluar();
+				System.out.println(generacionActual);
+			}
+				
 		}
 	}
 
@@ -141,7 +150,7 @@ public class AlgoritmoGenetico {
 					for(int j = 0; j < grupoIndividuos; j++)//recorro el grupo mandando a la mitad hacerse con completa y la otra con creciente
 						poblacion.add(FactoriaFuncion.getInstance().generaFuncion(funcionTipo,j % 2 ,pro));
 				}
-				if(tamPoblacion != poblacion.size())//no se han hecho toda la poblacion por no ser una división entera
+				while(tamPoblacion != poblacion.size())//no se han hecho toda la poblacion por no ser una división entera
 					poblacion.add(FactoriaFuncion.getInstance().generaFuncion(funcionTipo,0 ,maximaProfundidad));
 			}
 			else {//COMPLETA O CRECIENTE
@@ -180,6 +189,36 @@ public class AlgoritmoGenetico {
 			}*/
 		}
 		
+	}
+	private void resetPoblacion() {
+		if(funcionTipo == FuncionEnum.Funcion_PG) {
+			
+			int maximaProfundidad = mF.getMaxPr();
+			int metodoInicializacion = mF.getMetIni();
+			poblacion = new ArrayList<Funcion>();
+			if(metodoInicializacion == 2) {
+				//RAMPED AND HALF
+				int grupoIndividuos = tamPoblacion / (maximaProfundidad - 1);
+				for (int pro = 2; pro <= maximaProfundidad; pro++) {//recorro grupos con las distintas profundidades
+					for(int j = 0; j < grupoIndividuos; j++)//recorro el grupo mandando a la mitad hacerse con completa y la otra con creciente
+						poblacion.add(FactoriaFuncion.getInstance().generaFuncion(funcionTipo,j % 2 ,pro));
+				}
+				while(tamPoblacion != poblacion.size())//no se han hecho toda la poblacion por no ser una división entera
+					poblacion.add(FactoriaFuncion.getInstance().generaFuncion(funcionTipo,0 ,maximaProfundidad));
+			}
+			else {//COMPLETA O CRECIENTE
+				for (int i = 0; i < tamPoblacion; i++) {
+					poblacion.add(FactoriaFuncion.getInstance().generaFuncion(funcionTipo,metodoInicializacion ,maximaProfundidad));
+				}
+			}
+			
+		}
+		else {
+			poblacion = new ArrayList<Funcion>();
+			for (int i = 0; i < tamPoblacion; i++) {
+				poblacion.add(FactoriaFuncion.getInstance().generaFuncion(funcionTipo,0 ,0));
+			}
+		}
 	}
 
 	private void dibujaGrafica() {
