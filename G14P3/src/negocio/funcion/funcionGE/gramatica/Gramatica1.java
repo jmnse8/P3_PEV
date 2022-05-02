@@ -3,13 +3,6 @@ package negocio.funcion.funcionGE.gramatica;
 import java.util.ArrayList;
 
 /*
- S ::= <expr>
-<expr> ::= ( <expr> AND <expr>) |
-	( <expr> OR <expr> ) |
-	NOT ( <expr> ) |
-	IF ((<expr>) (<expr>) (<expr>)) |
-	AO | Al | DO | D1 | D2 | D3
-__________________________________________________________
 S ::= <expr>
 <expr> ::= (<expr> <op> <expr> ) |
 			<pre-operation> |
