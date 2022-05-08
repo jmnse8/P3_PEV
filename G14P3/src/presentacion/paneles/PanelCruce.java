@@ -36,12 +36,6 @@ public class PanelCruce extends JPanel {
 		cB = new JComboBox<String>();
 		cB.addItem("Uniforme");
 		cB.addItem("Monopunto");
-		/*cB.addItem("PMX");
-		cB.addItem("CX");
-		cB.addItem("CO");
-		cB.addItem("OX");
-		cB.addItem("OXPP");
-		cB.addItem("OXOP");*/
 		cB.addItem("Intercambio subárboles");
 		cB.setBounds(20, 20, 260, 20);
 		cB.setBackground(Colores.CLARO1);
@@ -67,22 +61,10 @@ public class PanelCruce extends JPanel {
 			return CruceEnum.Cruce_Uniforme;
 		case "Monopunto":
 			return CruceEnum.Cruce_Monopunto;
-		case "PMX":
-			return CruceEnum.Cruce_PMX;
-		case "CO":
-			return CruceEnum.Cruce_CO;
-		case "CX":
-			return CruceEnum.Cruce_CX;
-		case "OX":
-			return CruceEnum.Cruce_OX;
-		case "OXPP":
-			return CruceEnum.Cruce_OXPP;
-		case "OXOP":
-			return CruceEnum.Cruce_OXOP;
 		case "Intercambio subárboles":
 			return CruceEnum.Cruce_Arbol;
 		default:
-			return CruceEnum.Cruce_PMX;
+			return CruceEnum.Cruce_Uniforme;
 		}
 	}
 	

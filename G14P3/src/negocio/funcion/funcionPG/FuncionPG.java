@@ -102,11 +102,10 @@ public class FuncionPG implements Funcion, Cloneable {
 		int diferencia = individuo.getProfundidad() - profundidadMedia;
 		if(diferencia > 0)
 			fitness -= diferencia * 2;
-		//System.out.println(fitness + " " + individuo.aString()+ " " + individuo.getProfundidad() + " " + maximaProdundidad);
 		//------------
 	}
 	
-	private void calculaCaso(int[] caso, int k) {//System.out.println(individuo.aString() + " " + caso.toString());
+	private void calculaCaso(int[] caso, int k) {
 		if (k == caso.length) {
 			int solucionEsperada = getSolEsp(caso);
 			int solucionObtenida = individuo.getResultado(caso, nCaso);
@@ -177,77 +176,6 @@ public class FuncionPG implements Funcion, Cloneable {
 		return super.clone();
 	}
 
-/*
-	private Nodo getNodoCreciente() {
-		Random rd = new Random();
-		if(nCaso == 0) {// caso 0 : AO | A1 | DO | D1 | D2 | D3
-			int alea = rd.nextInt(10);
-			//System.out.println(alea);
-			switch (alea) {
-				case 0:
-					return new NodoOperacion(NodoEnum.AND);
-				case 1:
-					return new NodoOperacion(NodoEnum.NOT);
-				case 2:
-					return new NodoOperacion(NodoEnum.IF);
-				case 3:
-					return new NodoOperacion(NodoEnum.OR);
-				case 4:
-					return new NodoVariable(NodoEnum.A0);
-				case 5:
-					return new NodoVariable(NodoEnum.A1);
-				case 6:
-					return new NodoVariable(NodoEnum.D0);
-				case 7:
-					return new NodoVariable(NodoEnum.D1);
-				case 8:
-					return new NodoVariable(NodoEnum.D2);
-				case 9:
-					return new NodoVariable(NodoEnum.D3);
-				default:
-					return null;
-			}
-		}
-		else {// caso 1 : AO | A1 | A2 | DO | D1 | D2 | D3 | D4 | D5 | D6 | D7 | D8
-			int alea = rd.nextInt(15);
-
-			switch (alea) {
-				case 0:
-					return new NodoOperacion(NodoEnum.AND);
-				case 1:
-					return new NodoOperacion(NodoEnum.NOT);
-				case 2:
-					return new NodoOperacion(NodoEnum.IF);
-				case 3:
-					return new NodoOperacion(NodoEnum.OR);
-				case 4:
-					return new NodoVariable(NodoEnum.A0);
-				case 5:
-					return new NodoVariable(NodoEnum.A1);
-				case 6:
-					return new NodoOperacion(NodoEnum.D0);
-				case 7:
-					return new NodoOperacion(NodoEnum.D1);
-				case 8:
-					return new NodoVariable(NodoEnum.D2);
-				case 9:
-					return new NodoVariable(NodoEnum.D3);
-				case 10:
-					return new NodoOperacion(NodoEnum.A2);
-				case 11:
-					return new NodoOperacion(NodoEnum.D4);
-				case 12:
-					return new NodoVariable(NodoEnum.D5);
-				case 13:
-					return new NodoVariable(NodoEnum.D6);
-				case 14:
-					return new NodoVariable(NodoEnum.D7);
-				default:
-					return null;
-			}
-		}
-	}
-*/
 	@Override
 	public String toString() {
 		return individuo.aString() + "\n\tfitness = " + fitness;

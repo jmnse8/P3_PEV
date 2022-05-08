@@ -38,20 +38,20 @@ public class PanelGE extends JPanel{
 		
 		//inte.setBounds(20, 20, 260, 20);
 		
-		infoTam = new JLabel("Tamaño de gen:");
+		infoTam = new JLabel("Nº codones:");//Tamaño de gen
 		infoTam.setBounds(20, 20, 90, 20);
 		infoTam.setForeground(Colores.OSCURO2);
 		
-		SpinnerNumberModel modeloSpinner1 = new SpinnerNumberModel(20, 5, 100, 1);
+		SpinnerNumberModel modeloSpinner1 = new SpinnerNumberModel(20, 3, 100, 1);
 		tS = new JSpinner(modeloSpinner1);
 		tS.setBounds(115, 20, 50, 20);
-		tS.setToolTipText("Seleccionar tamaño del gen");
+		tS.setToolTipText("Seleccionar nº codones:");// tamaño del gen
 		
 		infoWr = new JLabel("Número máximo de wraps:");
 		infoWr.setBounds(20, 45, 180, 20);
 		infoWr.setForeground(Colores.OSCURO2);
 		
-		SpinnerNumberModel modeloSpinner2 = new SpinnerNumberModel(2, 0, 10, 1);
+		SpinnerNumberModel modeloSpinner2 = new SpinnerNumberModel(2, 1, 10, 1);
 		wrS = new JSpinner(modeloSpinner2);
 		wrS.setBounds(200, 45, 70, 20);
 		wrS.setToolTipText("Seleccionar número máximo de wraps");
